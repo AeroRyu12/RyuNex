@@ -1,0 +1,34 @@
+# ===========================================================================
+# CUSTOM COMMANDS CONFIGURATION
+# ===========================================================================
+# {guildName}, {guildId}, {userName}, {userId}, {userMention}, {channelName}, {channelId}, {channelMention}, {commandName}, {longTime}, {shortTime}, {memberCount}
+
+CommandsEnabled: false
+CommandsPrefix: "!"
+
+CustomCommands:
+  mongo:
+    type: "EMBED"
+    Embed:
+      Title: "📊 MongoDB Setup Guide"
+      Description:
+        - "To get started with MongoDB, follow the detailed guide provided below. This guide will assist you in setting up MongoDB efficiently and correctly."
+        - ""
+        - "Need further assistance? Don't hesitate to open a support ticket."
+      Footer:
+        Text: "Drako Development | MongoDB Setup"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#1769FF"
+      Thumbnail: ""
+    Roles:
+      Whitelist: ["ROLE_ID", "ROLE_ID"]
+    Options:
+      DeleteTriggerMessage: false
+      ReplyToUser: false
+    Buttons:
+      - Type: "LINK"
+        Name: "MongoDB Setup"
+        Emoji: "📑"
+        Link: "https://docs.drakodevelopment.net/misc/mongodb-setup"
+
+# See https://docs.drakodevelopment.net/core-features/custom-commands for more examples

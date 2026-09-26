@@ -1,0 +1,130 @@
+# ===========================================================================
+# WELCOME & LEAVE MESSAGES CONFIGURATION
+# ===========================================================================
+# MULTI-GUILD SUPPORT: ChannelID arrays allow the bot to work in multiple guilds.
+# Add ONE channel ID per guild. The bot automatically uses the one in the current guild.
+# ===========================================================================
+
+# Date/time placeholders in descriptions use Discord timestamps (auto-adjust to viewer's timezone).
+# Date/time placeholders in Author and Footer sections use static text formatted with the timezone from core.yml.
+
+# User Placeholders
+# {userName}: Username (YouSeeMeRunning)
+# {user}: User mention (@YouSeeMeRunning)
+# {userTag}: Username with discriminator (YouSeeMeRunning#1234)
+# {userId}: User ID (264032125496459265)
+# {userBanner}: User's banner image URL
+# {user-avatar}: User's avatar image URL
+
+# Server Placeholders
+# {guildName}: Server name
+# {guildIcon}: Server icon URL
+# {guildId}: Server ID
+# {memberCount}: Member count with suffix (1st, 2nd, 3rd...)
+# {memberCountNumeric}: Member count as number (5, 6, 7...)
+
+# Invite Placeholders
+# {invitedBy}: Who invited them
+# {invitedByCount}: How many invites the inviter has
+
+# Time Placeholders (Discord Timestamps - auto-adjust to viewer's timezone)
+# {shortTime}: Current time (5:00 PM)
+# {longTime}: Current date (January 1, 2023)
+
+# Join Date Placeholders (Discord Timestamps)
+# {joinDate}: Join date (01/01/2023)
+# {joinTime}: Join time (5:00 PM)
+# {joinDateTime}: Join date and time (January 1, 2023 5:00 PM)
+# {joinRelative}: Relative join time (2 hours ago)
+# {user-joinedAt}: Join date short format
+# NV_PryRB0p9JKd7JCpuUVH+gZMFiBc3gyeJo7/AqXBycJU=
+# Account Creation Placeholders (Discord Timestamps)
+# {UserCreation}: Relative account age (2 months ago)
+# {createdDate}: Account creation date (01/01/2023)
+# {createdDateTime}: Account creation date and time
+# {createdRelative}: Relative creation time (2 months ago)
+# {user-createdAt}: Creation date short format
+
+# Leave Message Only Placeholders (Discord Timestamps)
+# {leaveDate}: Leave date (01/01/2023)
+# {leaveTime}: Leave time (5:00 PM)
+# {leaveDateTime}: Leave date and time
+# {leaveRelative}: Relative leave time (just now)
+
+WelcomeMessage:
+  Enabled: false
+  ChannelID: ["CHANNEL_ID"] # One channel per guild - bot sends to the channel in the current guild
+  Type: "BOTH" # EMBED, MESSAGE, BOTH (If both are used the message will appear above the embed)
+  Text: "Welcome to **{guildName}**, {userName}"
+  Embed:
+    Title: ""
+    Description:
+      - "Welcome to **{guildName}**, {userName}! We're delighted to have you join our community. 🎉"
+      - "" 
+      - "Invited By » {invitedBy} ({invitedByCount} invites)" 
+      - "Join Date » {joinDate} ({joinTime})" 
+      - "Account Age » {UserCreation}" 
+      - "Members » {memberCount} member" 
+    Footer:
+      Text: "{guildName} • Today at {shortTime}"
+      Icon: "{guildIcon}"
+    Author:
+      Text: "Welcome to {guildName}!"
+      Icon: "https://static-00.iconduck.com/assets.00/hand-waving-icon-1875x2048-trzytj43.png"
+    Color: "#1769FF"
+    Image: "{userBanner}" # {userBanner} - Displays the users banner
+    Thumbnail: "{user-avatar}" # {user-avatar} - Displays the users avatar
+    Buttons:
+      - Type: "LINK"
+        Name: "Product"
+        Emoji: "📜"
+        Link: "https://builtbybit.com/resources/drako-bot-multi-purpose-discord-bot.22266/"
+  AutoDelete: # Auto delete the message after a certain time
+    Enabled: false
+    Delay: "15s"
+  
+  
+  DM:
+    Enabled: false
+    Embed:
+      Title: "Welcomne, {userName}!"
+      Description:
+        - "Welcome to **{guildName}**, {userName}! We're delighted to have you join our community. 🎉"
+        - "You are our {memberCount} member!" 
+      Footer:
+        Text: "{guildName} • Today at {shortTime}"
+        Icon: "{guildIcon}"
+      Author:
+        Text: "Welcome to {guildName}!"
+        Icon: "https://static-00.iconduck.com/assets.00/hand-waving-icon-1875x2048-trzytj43.png"
+      Color: "#1769FF"
+      Image: "{userBanner}" # {userBanner} - Displays the users banner
+      Thumbnail: "{user-avatar}" # {user-avatar} - Displays the users avatar
+      Buttons:
+        - Type: "LINK"
+          Name: "Product"
+          Emoji: "📜"
+          Link: "https://builtbybit.com/resources/drako-bot-multi-purpose-discord-bot.22266/"
+
+LeaveMessage:
+  Enabled: false
+  ChannelID: ["CHANNEL_ID"] # One channel per guild - bot sends to the channel in the current guild
+  Type: "BOTH" # EMBED, MESSAGE, BOTH (If both are used the message will appear above the embed)
+  Text: "Goodbye, {userName}!"
+  Embed:
+    Title: ""
+    Description:
+      - "Goodbye, {userName}!"
+      - "Hope to see you again soon...."
+    Footer:
+      Text: "{guildName} • {shortTime}"
+      Icon: "{guildIcon}"
+    Author:
+      Text: "👋 See you soon!"
+      Icon: ""
+    Color: "#1769FF"
+    Image: "" # {userBanner} - Displays the users banner
+    Thumbnail: "{user-avatar}" # {user-avatar} - Displays the users avatar
+  AutoDelete: # Auto delete the message after a certain time
+    Enabled: false
+    Delay: "15s" # e.g., "10s", "1m", "1h", "1d"

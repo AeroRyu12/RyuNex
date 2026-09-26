@@ -1,0 +1,66 @@
+# ===========================================================================
+# GIVEAWAYS SYSTEM CONFIGURATION
+# ===========================================================================
+
+Giveaways:
+  AllowRoles: ["ROLE_ID", "ROLE_ID"] # Supports multiple role IDs for different guilds
+  GiveawayStatusCheck: 7500 # in ms how often the giveaways will be checked to see if they have ended
+  DirectMessageWinners: true # Directly message the winners
+  Embed:
+    ActiveGiveaway:
+      EmbedColor: "#1769FF"
+      EmbedImage: "https://i.imgur.com/yw6UcuW.jpg"
+      EmbedFooterIcon: "https://i.imgur.com/13VlA3w.png"
+      EmbedFooterText: "Giveaway ID: {giveawayId}"
+      EmbedThumbnail: "https://i.imgur.com/ewT6bOT.png"
+      ShowTitle: true
+      ShowThumbnail: true
+      ShowHostedBy: true
+      ShowEndsIn: true
+      ShowEntries: true
+      ShowWhitelistRoles: true
+      ShowBlacklistRoles: true
+      ShowMinimumServerJoinDate: true
+      ShowMinimumAccountAge: true
+      ShowMinimumMessages: true
+      ShowImage: true
+      ShowFooter: true
+      Button:
+        JoinButton:
+          ButtonStyle: "Primary"
+          ButtonEmoji: "🎉"
+          ButtonText: "Enter"
+        CheckPercent:
+          ButtonStyle: "Secondary"
+          ButtonEmoji: "📈"
+          ButtonText: "Odds"
+        ShowEntries:
+          ButtonStyle: "Secondary"
+          ButtonEmoji: "👥"
+          ButtonText: "Entries"
+        ShowEntrantsList:
+          ButtonStyle: "Secondary"
+          ButtonEmoji: "👥"
+          ButtonText: "Show Entrants"
+          Embed:
+            Title: "🎉 Giveaway Entrants - {prize}"
+            Description:
+              - "{entrantsList}"
+            Footer:
+              Text: "Total Entrants: {totalEntrants} • Page {currentPage}/{totalPages}"
+              Icon: "{footerIcon}"
+            Color: "#1769FF"
+            Thumbnail: "https://i.imgur.com/ewT6bOT.png"
+
+    EndedGiveaway:
+      EmbedColor: "#1769FF"
+      EmbedImage: "https://i.imgur.com/7TQDDAy.png"
+      EmbedFooterIcon: "https://i.imgur.com/13VlA3w.png"
+      EmbedFooterText: "Giveaway ID: {giveawayId}"
+      EmbedThumbnail: "https://i.imgur.com/ewT6bOT.png"
+      ShowTitle: true
+      ShowThumbnail: true
+      ShowImage: true
+      ShowWinnersField: true
+      ShowEntriesField: true
+      ShowFooter: true

@@ -1,0 +1,623 @@
+# ===========================================================================
+# TICKET SYSTEM CONFIGURATION
+# ===========================================================================
+# MULTI-GUILD SUPPORT: Arrays like CategoryID: ["id1", "id2"] allow the bot
+# to work in multiple guilds. Add ONE channel/category ID per guild.
+# The bot automatically finds and uses the one that exists in the current guild.
+# ===========================================================================
+
+# ===========================================================================
+# GENERAL TICKET SETTINGS
+# ===========================================================================
+TicketSettings:
+  Enabled: true
+  LogsChannelID: ["CHANNEL_ID"] # One channel per guild - bot finds the one in the current guild
+  MaxTickets: 1
+  DeletionTime: "3s"
+  useSelectMenu: true
+  overFlow: ["CATEGORY_ID", "CATEGORY_ID"]
+
+  DelayedResponse:
+    Enabled: false
+    TicketThreshold: 25 # Send warning when there are this many open tickets
+    Embed:
+      Title: ""
+      Description:
+        - "# 🎫 High Support Volume Notice"
+        - ""
+        - "⚠️ We are currently experiencing higher than usual ticket volume."
+        - ""
+        - "## Current Status"
+        - "> 📊 **Active Tickets:** {openTickets}"
+        - "> ⏱️ **Est. Response Time:** 24-48 hours"
+        - "> 🔄 **Status:** Processing tickets in order received"
+        - ""
+        - "## Need Immediate Help?"
+        - "• Review our [Documentation](https://docs.drakodevelopment.net)"
+        - "• Join our [Community](https://discord.gg/drako)"
+      Footer:
+        Text: "Your ticket will still be created • Thank you for your patience"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#FFA500"
+      Image: "https://i.imgur.com/LbjDuZ8.png"
+      Thumbnail: "https://i.imgur.com/1FGL7XO.png"
+
+  CloseReasons:
+    Enabled: true
+    DefaultReason: "No reason provided"
+    Reasons:
+      - name: "Issue Resolved"
+        emoji: "✅"
+        value: "resolved"
+      - name: "User Request"
+        emoji: "👋"
+        value: "user_request"
+      - name: "Inactive"
+        emoji: "⏰"
+        value: "inactive"
+      - name: "Invalid"
+        emoji: "❌"
+        value: "invalid"
+    AllowCustomReason: true
+
+# ===========================================================================
+# CLOSE REQUEST SYSTEM
+# ===========================================================================
+# Allows staff to request the ticket creator to close the ticket
+# The user can accept or decline the request
+CloseRequest:
+  Enabled: true
+  DefaultReason: "Issue has been resolved"
+  AutoCloseOnAccept: true
+  
+  Embed:
+    Title: "📩 Close Request"
+    Description:
+      - "Hey {user}!"
+      - ""
+      - "**{staff}** has requested to close this ticket."
+      - ""
+      - "**Reason:** {reason}"
+      - ""
+      - "If your issue has been resolved, please click **Accept** to close the ticket."
+      - "If you still need help, click **Decline** and let us know."
+    Footer:
+      Text: "Ticket System"
+      Icon: ""
+    Color: "#FFA500"
+    Image: ""
+    Thumbnail: ""
+
+  Buttons:
+    Accept:
+      Label: "Accept & Close"
+      Emoji: "✅"
+      Style: "Success"
+    Decline:
+      Label: "Decline"
+      Emoji: "❌"
+      Style: "Secondary"
+
+  Messages:
+    Accepted: "Close request accepted by {user}. Closing ticket..."
+    Declined: "Close request declined by {user}. Staff will continue to assist."
+    DeclinedStaff: "{user} has declined the close request. Please continue assisting them."
+
+# ===========================================================================
+# STAFF MENTION ALERT
+# ===========================================================================
+# Alerts users when they mention a staff member who is offline/away
+  StaffMentionAlert:
+    Enabled: true
+    AlertStatuses: ["offline", "idle", "dnd"]
+    EmbedColor: "#FFA500"
+    ShowAlternatives: true
+    AlternativesTitle: "🟢 Available Staff"
+    Messages:
+      Offline: "⚠️ {staff} is currently **offline** and may not see your message right away."
+      Idle: "⚠️ {staff} is currently **away** and may take longer to respond."
+      DND: "⚠️ {staff} has **Do Not Disturb** enabled and may not respond immediately."
+
+# ===========================================================================
+# PRIORITY SYSTEM
+# ===========================================================================
+Priority:
+  Enabled: true
+  DefaultPriority: "Low"
+
+  Levels:
+    Low:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Roles assigned this priority
+      Tag: ["ROLE_ID", "ROLE_ID"] # Roles to tag when a ticket is opened by this priority
+      MoveTop: false # Should their ticket be moved to the top of the category?
+
+    Medium:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Roles assigned this priority
+      Tag: ["ROLE_ID", "ROLE_ID"] # Roles to tag when a ticket is opened by this priority
+      MoveTop: true # Should their ticket be moved to the top of the category?
+
+    High:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Roles assigned this priority
+      Tag: ["ROLE_ID", "ROLE_ID"] # Roles to tag when a ticket is opened by this priority
+      MoveTop: true # Should their ticket be moved to the top of the category?
+
+# ===========================================================================
+# WORKING HOURS
+# ===========================================================================
+WorkingHours:
+  Enabled: false
+  Timezone: Europe/London # https://gist.github.com/diogocapela/12c6617fc87607d11fd62d2a4f42b02a
+  NonWorkingDays: ["Saturday", "Sunday"] # Days that are completely off - no working hours
+  Schedule: 
+    Monday: "16:00-22:00"
+    Tuesday: "16:00-22:00"
+    Wednesday: "16:00-22:00"
+    Thursday: "16:00-22:00"
+    Friday: "16:00-22:00"
+    Saturday: "16:00-22:00"
+    Sunday: "16:00-22:00"
+  allowOpenTickets: true # Should people be able to open tickets during the off hours? 
+
+WorkingEmbed: # This will be posted in the ticket if it's raised out of hours
+  Embed:
+    Title: "Support Ticket Notice"
+    Description:
+      - "Please note that this ticket has been raised outside of working hours."
+      - "Our response may be delayed."
+      - " "
+      - "Our working hours are between {workinghours_start} and {workinghours_end}."
+    Footer:
+      Text: "Drako Development | Ticket System"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Author:
+      Text: "Drako Development Support"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Color: "#1769FF"
+    Image: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+    Thumbnail: ""
+
+# ===========================================================================
+# TICKET PANELS
+# ===========================================================================
+TicketPanelSettings:
+  Panel1:
+    Embed:
+      Title: "📩 Support Tickets"
+      Description: 
+        - "Please select a category below for assistance."
+        - " "
+        - "🕒 **Standard Working Hours**: {workinghours_start_monday} - {workinghours_end_monday}"
+        - "_Note: We strive to be available outside these hours, but response times may be delayed._"
+      Footer:
+        Text: "Drako Development | Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Author:
+        Text: "Drako Support Team"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#1769FF"
+      Image: "https://i.imgur.com/1FGL7XO.png"
+      Thumbnail: ""
+
+# ===========================================================================
+# TICKET TRANSCRIPT
+# ===========================================================================
+TicketTranscript:
+  Type: WEB # TXT, WEB
+  Save: true
+  MinMessages: "1"
+  SavePath: ./transcripts/  # This will save in a transcripts folder in your bot's root directory
+
+# ===========================================================================
+# TICKET CREATION TEMPLATES
+# ===========================================================================
+# {ticketType} displays the ticket type
+# {user} is @John James
+# {guild} displays the guild 
+# {question} question array
+# {answer} answer array
+# {userIcon} displays the user's icon
+TicketCreation:
+  Default:
+    Followup:
+      Message: "Thank you {user} for reaching out! Please describe your issue in detail."
+    Embed:
+      Title: "🎫 New Support Ticket"
+      Description:
+        - "Welcome to our Support System, {user}!"
+        - ""
+        - "**Ticket Type:** {ticketType}"
+        - "**Expected Response Time:** Within 24 hours"
+        - "**Claimed By:** {claimer}"
+        - ""
+        - "{questions}"
+        - "Our support team will assist you shortly."
+      Footer:
+        Text: "Drako Development | Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#1769FF"
+      Thumbnail: "{userIcon}"
+    QuestionFormat:
+      - "**{question}**"
+      - "```{answer}```"
+
+  TicketType1:
+    Followup:
+      Message: "Thank you {user} for your purchase inquiry! Our sales team will assist you shortly."
+    Embed:
+      Title: "️ New Purchase Support Ticket"
+      Description:
+        - "Welcome to our Sales Support, {user}!"
+        - ""
+        - "**Ticket Type:** {ticketType}"
+        - "**Expected Response Time:** Within 12 hours"
+        - "**Claimed By:** {claimer}"
+        - ""
+        - "{questions}"
+        - "Our sales team will assist you shortly."
+      Footer:
+        Text: "Drako Development | Sales Support"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#00FF00"
+      Thumbnail: "{userIcon}"
+    QuestionFormat:
+      - "**{question}**"
+      - "```{answer}```"
+
+# ===========================================================================
+# ARCHIVE DESIGN
+# ===========================================================================
+ArchiveDesign:
+  Embed:
+    Title: "Ticket Archived"
+    Description:
+      - "### 🎫 Ticket Status"
+      - "This ticket has been closed and archived."
+      - ""
+      - "### 👤 Details"
+      - "> **Creator:** {userTag}"
+      - "> **Reason:** {reason}"
+      - ""
+      - "### ⚡ Quick Actions"
+      - "• Use the buttons below to manage this ticket"
+      - "• Need help? Create a new ticket"
+    Footer:
+      Text: "Drako Development • Ticket System"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Color: "#2B2D31"
+    Image: "https://i.imgur.com/LbjDuZ8.png"
+    Thumbnail: "https://i.imgur.com/1SbfB8i.png"
+    Buttons:
+      1:
+        Name: "Reopen"
+        Emoji: "🔓"
+        Style: "Primary"
+        Type: "REOPEN"
+      2:
+        Name: "Transcript"
+        Emoji: "📑"
+        Style: "Secondary"
+        Type: "TRANSCRIPT"
+      3:
+        Name: "Delete"
+        Emoji: "🗑️"
+        Style: "Danger"
+        Type: "DELETE"
+
+# ===========================================================================
+# USER LEFT DESIGN
+# ===========================================================================
+UserLeftDesign:
+  Embed:
+    Title: "User Alert"
+    Description:
+      - "The creator of this ticket, **{user}** has left the server."
+    Footer:
+      Text: "User ID: {userId}"
+      Icon: "{userIcon}"
+    Author:
+      Text: ""
+      Icon: ""
+    Color: "#1769FF"
+    Image: ""
+    Thumbnail: "{userIcon}"
+  Button:
+    Name: "Delete Ticket"
+    Emoji: "⛔"
+    Style: Secondary # Primary, Secondary, Success, Danger
+
+# ===========================================================================
+# TICKET TYPES
+# ===========================================================================
+TicketTypes:
+  TicketType1:
+    Enabled: true
+    Panel: "Panel1"
+    Name: "General Support"
+    ChannelName: "{ticket-id}-General-{user}-{priority}"
+    ChannelTopic: "Category: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["1279530828988289095"] # One category per guild - add each guild's category ID
+    AutoAlert: "12h"
+    ArchiveCategory: [""] # One category per guild - bot uses the one in the current guild
+    SupportRole: ["ROLE_ID"]
+    UserRole: ["ROLE_ID"]
+    TagSupport: false
+    TagCreator: true
+    RestrictDeletion: false
+    Claiming:
+      Enabled: true
+      AutoClaim: true # If true, the first staff member to type will automatically claim the ticket
+      Button:
+        Name: "Claim Ticket"
+        Emoji: "🎫"
+        Style: "Secondary" # Primary, Secondary, Success, Danger
+      RestrictResponse: true # If true, only the claimer can respond until unclaimed
+      RestrictView: true # If true, only the ticket owner and claimer can view the ticket when claimed
+      AnnounceClaim: true # Should the ticket be announced to the channel when claimed?
+      AutoUnclaim:
+        Enabled: true
+        InactiveTime: "2h" # How long until ticket is auto-unclaimed if staff hasn't responded
+        NotifyChannel: true # Send a message when auto-unclaiming
+    Button:
+      Name: "General Support"
+      Emoji: "🔍"
+      Style: "Danger"
+      Description: "Open to receive general support"
+    Questions: 
+      - PurchaseID:
+          Question: "Do you have a transaction ID?"
+          Placeholder: "TBX-wdUGVApxKSMXham"
+          Style: "Short" # Short, Paragraph
+          Required: false
+          maxLength: 1000
+      - IssueType:
+          Type: "StringSelect"
+          Question: "What type of issue are you experiencing?"
+          Description: "Please select the category that best describes your issue"
+          Placeholder: "Choose an issue type..."
+          Required: true
+          Options:
+            - Label: "Bug Report"
+              Value: "bug"
+              Description: "Something isn't working as expected"
+              Emoji: "🐛"
+            - Label: "Feature Request"
+              Value: "feature"
+              Description: "Suggest a new feature or improvement"
+              Emoji: "💡"
+            - Label: "Account Issue"
+              Value: "account"
+              Description: "Problems with your account or billing"
+              Emoji: "👤"
+            - Label: "Technical Support"
+              Value: "technical"
+              Description: "Need help with setup or configuration"
+              Emoji: "🔧"
+            - Label: "Other"
+              Value: "other"
+              Description: "Something else not listed above"
+              Emoji: "❓"
+
+  TicketType2:
+    Enabled: true
+    Panel: "Panel1"
+    Name: "Technical Support"
+    ChannelName: "{ticket-id}-Technical-{user}-{priority}"
+    ChannelTopic: "Category: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: [""] # One category per guild - add each guild's category ID
+    AutoAlert: "12h"
+    ArchiveCategory: [""] # One category per guild - bot uses the one in the current guild
+    SupportRole: ["ROLE_ID"]
+    UserRole: [""] 
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true # Should the ticket be closable by users?
+    Claiming:
+      Enabled: true
+      AutoClaim: true # If true, the first staff member to type will automatically claim the ticket
+      Button:
+        Name: "Claim Ticket"
+        Emoji: "🎫"
+        Style: "Secondary" # Primary, Secondary, Success, Danger
+      RestrictResponse: true # If true, only the claimer can respond until unclaimed
+      RestrictView: false # If true, only the ticket owner and claimer can view the ticket when claimed
+      AnnounceClaim: true # Should the ticket be announced to the channel when claimed?
+      AutoUnclaim:
+        Enabled: true
+        InactiveTime: "2h" # How long until ticket is auto-unclaimed if staff hasn't responded
+        NotifyChannel: true # Send a message when auto-unclaiming
+    Button:
+      Name: "Technical Support"
+      Emoji: "💻"
+      Style: "Primary" # Primary, Secondary, Success, Danger
+      Description: "Technical questions and issues"
+    Questions: []
+
+Alert:
+  Enabled: true
+  Time: "12h"
+  DM:
+    Enabled: true
+    LogFailures: false # Whether to log DM failures in the ticket channel
+    Embed:
+      Title: "⚠️ Ticket Alert"
+      Description:
+        - "Hello {user}"
+        - " "
+        - "**Ticket Information**"
+        - "> **Server:** {guild}"
+        - "> **Time Until Close:** {time}"
+        - "> **Reason:** {reason}"
+        - " "
+        - "**⚠️ Action Required**"
+        - "Your ticket requires attention and will be automatically closed if no response is received."
+        - "Click the button below to go to your ticket."
+      Footer:
+        Text: "Drako Development | Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Author:
+        Text: "Ticket Alert System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#FF0000"
+      Image: ""
+      Thumbnail: ""
+    Button:
+      Label: "Go to Ticket"
+      Emoji: "🎫"
+
+  Embed:
+    Title: "Support Ticket Notice"
+    Description:
+      - "**Ticket Information**"
+      - "> **User:** {user}"
+      - "> **Time Until Close:** {time}"
+      - "> **Reason:** {reason}"
+      - " "
+      - "**⚠️ Action Required**"
+      - "This ticket requires attention and will be automatically closed if no response is received."
+    Footer:
+      Text: "Drako Development | Ticket System"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Author:
+      Text: "Drako Development Support"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Color: "#FF0000"
+    Image: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+    Thumbnail: ""
+    Button:
+      Label: "Close Ticket"
+      Emoji: "🔒"
+      Style: "Danger" # Primary, Secondary, Success, Danger
+
+# ===========================================================================
+# TICKET CLOSURE DM
+# ===========================================================================
+TicketClosureDM:
+  Enabled: true
+  Transcript: true
+  Embed:
+    Title: "Ticket Closure Notification"
+    Description:
+      - "{userTag}, your ticket in {guild} has been closed."
+      - " "
+      - "**Ticket Summary**"
+      - "> **Messages:** {messageCount}"
+      - "> **Priority:** {priority}"
+      - "> **Handled By:** {claimer}"
+      - "> **Close Reason:** {reason}"
+      - " "
+      - "We value your feedback! Please leave us a review below."
+    Footer:
+      Text: "Drako Development | Ticket System"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Author:
+      Text: "Drako Support"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Color: "#1769FF"
+    Image: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+    Thumbnail: "https://i.imgur.com/w5XxKpc.png"
+
+# ===========================================================================
+# REVIEWS
+# ===========================================================================
+Reviews:
+  Enabled: false
+  ChannelID: "" # Channel where reviews will be sent.
+  Placeholder: "Rate us!"
+  ButtonEmoji: "⭐"
+  ButtonStyle: "Secondary" # Primary, Secondary, Success, Danger
+  
+  # Multiple rating questions that will appear as select dropdowns in the modal
+  Questions:
+    1:
+      ID: "support_quality"
+      Label: "Support Quality (1-5)"
+      Description: "Rate the quality of support you received"
+      Required: true
+      Options:
+        - Label: "Very Poor"
+          Value: "1"
+          Emoji: "😞"
+        - Label: "Poor"
+          Value: "2"
+          Emoji: "😐"
+        - Label: "Average"
+          Value: "3"
+          Emoji: "🙂"
+        - Label: "Good"
+          Value: "4"
+          Emoji: "😊"
+        - Label: "Excellent"
+          Value: "5"
+          Emoji: "😍"
+  
+  # Optional feedback text input
+  FeedbackInput:
+    Enabled: false # Should the bot ask the user why for the review they gave?
+    Label: "Additional Feedback"
+    Placeholder: "Please share any additional thoughts or suggestions..."
+    Style: "Paragraph" # Short, Paragraph
+    Required: false
+    MaxLength: 1000
+
+  Embed:
+    Title: "⭐ Ticket Review"
+    Description:
+      - "### Review Submitted"
+      - ""
+      - "**Ticket Information**"
+      - "> **Creator:** {ticketCreator}"
+      - "> **Ticket:** {channelName}"
+      - "> **Handled By:** {claimer}"
+      - ""
+      - "**Ratings**"
+      - "{ratings}"
+      - ""
+      - "**Additional Feedback**"
+      - "```{feedback}```"
+    Footer:
+      Text: "Drako Development | Ticket Reviews"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Author:
+      Text: "Ticket Review System"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Color: "#FFD700"
+    Image: ""
+    Thumbnail: "{userIcon}"
+
+# ===========================================================================
+# TICKET LOGS
+# ===========================================================================
+Logs:
+  Close: 
+    Embed:
+      Title: "**Ticket Closure**"
+      Description:
+        - "**Closure**"
+        - "> Ticket has been closed by {userTag}."
+        - "> **Reason:** {reason}"
+        - " "
+        - "**Information**"
+        - "> **Creator:** {ticketCreator}"
+        - "> **Messages:** {messageCount}"
+        - "> **Priority:** {priority}"
+        - "> **Claimed By:** {claimer}"
+        - " "
+        - "**Ticket Channel**"
+        - "> {channelName}"
+      Footer:
+        Text: "Drako Development | Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Author:
+        Text: "Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#1769FF"
+      Image: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+      Thumbnail: "https://i.imgur.com/w5XxKpc.png"
+   
+    ReviewFormat:
+      AverageRating: "Average Rating"
+      Rating: "Rating"
+      Review: "Review"
+      AdditionalFeedback: "Additional Feedback"
+      NoRating: "No Rating Yet"
+      CloseReason: "Close Reason"

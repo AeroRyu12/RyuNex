@@ -1,0 +1,242 @@
+# ===========================================================================
+# ECONOMY SYSTEM CONFIGURATION
+# ===========================================================================
+
+Economy:
+  defaultInterestRate: 0.00
+  interestInterval: ["10:00"]
+  administrator: ["ROLE_ID", "ROLE_ID"]
+  maxInterestEarning: 100000  # Optional: Set to 0 for no limit
+
+  Daily:
+    baseAmount: 200
+    increasePerDay: 50
+    maxAmount: 1000
+
+  Beg:
+    cooldown: "10m"
+    min: 50
+    max: 200
+  Work:
+    cooldown: "10m"
+    min: 150
+    max: 500
+  Crime:
+    cooldown: "10m"
+    min: -300
+    max: 400
+  Blackjack:
+    cooldown: "0"
+    winMultiplier: 2.0
+  Roulette:
+    cooldown: "0"
+    winMultiplier:
+      red: 2
+      black: 2
+      green: 14
+  Coinflip:
+    cooldown: "0"
+  Slot:
+    cooldown: "0"
+    multiplier: 4
+  Roll:
+    cooldown: "0"
+  Rob:
+    cooldown: "2h" 
+    minBalanceToRob: 200
+    percent: "5%"
+    maxAmount: "5000"
+
+# ===========================================================================
+# PET SYSTEM CONFIGURATION
+# ===========================================================================
+Pets:
+  feedCost: 50
+  feedCooldown: "1h"
+  collectCooldown: "30m"
+  happinessDecayPerHour: 2
+  hungerDecayPerHour: 4
+  xpPerFeed: 15
+  maxLevel: 50
+  levelBonusPercent: 2
+
+  Types:
+    dog:
+      name: "Dog"
+      emoji: "🐕"
+      description: "A loyal companion that helps you earn more coins."
+      price: 5000
+      earningsBoost: 0.10
+      passiveIncome: 25
+      color: "#8B4513"
+    cat:
+      name: "Cat"
+      emoji: "🐱"
+      description: "A clever cat that finds extra coins for you."
+      price: 5000
+      earningsBoost: 0.08
+      passiveIncome: 30
+      color: "#FFA500"
+    dragon:
+      name: "Dragon"
+      emoji: "🐉"
+      description: "A mighty dragon with powerful earning abilities."
+      price: 50000
+      earningsBoost: 0.25
+      passiveIncome: 100
+      color: "#FF4500"
+    unicorn:
+      name: "Unicorn"
+      emoji: "🦄"
+      description: "A magical unicorn that brings prosperity."
+      price: 25000
+      earningsBoost: 0.15
+      passiveIncome: 60
+      color: "#FF69B4"
+    phoenix:
+      name: "Phoenix"
+      emoji: "🔥"
+      description: "A legendary bird reborn from flames."
+      price: 75000
+      earningsBoost: 0.30
+      passiveIncome: 150
+      color: "#FF6600"
+
+# ===========================================================================
+# PRESTIGE SYSTEM CONFIGURATION
+# ===========================================================================
+Prestige:
+  enabled: true
+  minBalance: 100000
+  bonusPerLevel: 0.05
+  maxLevel: 10
+
+  Requirements:
+    1: 100000
+    2: 250000
+    3: 500000
+    4: 1000000
+    5: 2500000
+    6: 5000000
+    7: 10000000
+    8: 25000000
+    9: 50000000
+    10: 100000000
+
+  Rewards:
+    1:
+      title: "Bronze"
+      emoji: "🥉"
+      color: "#CD7F32"
+    2:
+      title: "Silver"
+      emoji: "🥈"
+      color: "#C0C0C0"
+    3:
+      title: "Gold"
+      emoji: "🥇"
+      color: "#FFD700"
+    4:
+      title: "Platinum"
+      emoji: "💎"
+      color: "#E5E4E2"
+    5:
+      title: "Diamond"
+      emoji: "💠"
+      color: "#B9F2FF"
+    6:
+      title: "Master"
+      emoji: "👑"
+      color: "#9400D3"
+    7:
+      title: "Grandmaster"
+      emoji: "⚜️"
+      color: "#4B0082"
+    8:
+      title: "Legend"
+      emoji: "🌟"
+      color: "#FFD700"
+    9:
+      title: "Mythic"
+      emoji: "🔱"
+      color: "#FF4500"
+    10:
+      title: "Immortal"
+      emoji: "✨"
+      color: "#00FFFF"
+
+# ===========================================================================
+# HEIST SYSTEM CONFIGURATION
+# ===========================================================================
+Heist:
+  scoutCost: 500
+  scoutExpiry: "2h"
+  planExpiry: "1h"
+  executeCooldown: "4h"
+
+  Locations:
+    convenience_store:
+      name: "Convenience Store"
+      emoji: "🏪"
+      difficulty: 1
+      minReward: 500
+      maxReward: 2000
+      baseSuccess: 0.80
+    bank:
+      name: "Local Bank"
+      emoji: "🏦"
+      difficulty: 3
+      minReward: 5000
+      maxReward: 20000
+      baseSuccess: 0.50
+    mansion:
+      name: "Rich Mansion"
+      emoji: "🏰"
+      difficulty: 4
+      minReward: 10000
+      maxReward: 50000
+      baseSuccess: 0.35
+    casino:
+      name: "Casino Vault"
+      emoji: "🎰"
+      difficulty: 5
+      minReward: 25000
+      maxReward: 100000
+      baseSuccess: 0.20
+
+  Plans:
+    stealth:
+      name: "Stealth Approach"
+      emoji: "🥷"
+      description: "Sneak in undetected"
+      successBonus: 0.15
+      rewardMultiplier: 0.8
+    aggressive:
+      name: "Aggressive Entry"
+      emoji: "💥"
+      description: "Go in guns blazing"
+      successBonus: -0.10
+      rewardMultiplier: 1.3
+    distraction:
+      name: "Create Distraction"
+      emoji: "🎭"
+      description: "Divert attention first"
+      successBonus: 0.10
+      rewardMultiplier: 1.0
+    inside_job:
+      name: "Inside Job"
+      emoji: "🕵️"
+      description: "Use insider information"
+      successBonus: 0.25
+      rewardMultiplier: 0.9
+
+# ===========================================================================
+# TRIVIA GAME CONFIGURATION
+# ===========================================================================
+Trivia:
+  baseCooldown: "4h"
+  questionCount: 6
+  pointsPerCorrect: 10
+  bonusPerStreak: 2
+  cooldownReductionPerCorrect: 0.1
+  maxCooldownReduction: 0.7

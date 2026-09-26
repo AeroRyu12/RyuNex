@@ -1,0 +1,86 @@
+# ===========================================================================
+# LEVELING SYSTEM CONFIGURATION
+# ===========================================================================
+
+# Placeholders
+# {userName}: YouSeeMeRunning - User's display name
+# {user}: @YouSeeMeRunning - User mention
+# {userId}: 264032125496459265 - User's ID
+# {userIcon}: User's avatar URL
+# {userBanner}: User's banner URL (falls back to avatar if no banner)
+# {guildName}: Guild Name
+# {guildIcon}: Guild Icon URL
+# {oldLevel}: Previous level before level up
+# {newLevel}: New level after level up
+# {oldXP}: XP required for the previous level
+# {newXP}: XP required for the next level
+# {xp}: Current XP amount
+# {xpNeeded}: XP needed for next level
+# {randomLevelMessage}: Outputs a random level message from lang.yml
+# {tag}: User's full Discord tag (username#discriminator)
+
+LevelingSystem:
+  Enabled: true
+  ResetDataOnLeave: false # Reset user level and xp if they leave the server?
+  MessageXP: 8-15 # Range of XP gained from sending messages
+  VoiceXP: 1-3 # Range of XP gained from being in a voice call
+  XPNeeded: 300 # XP multiplier each level (used when UseFormula is false)
+  UseFormula: false # Use a formula to calculate XP needed per level
+  Formula: "100 * {level}^2" # Formula for XP calculation. Available variables: {level}
+  Permission: ["ROLE_ID", "ROLE_ID"] # Who can use the level admin commands?
+  ChannelSettings:
+    LevelUpChannelID: [""] # Supports multiple channel IDs for different guilds. Leave empty for the channel the user is currently in.
+    DisabledChannels: [""] # Users won't gain XP in these channels
+    DisabledCategories: [""] # Users won't gain XP in these categories
+
+  CooldownSettings:
+    EnableXPCooldown: true # Enable cooldown for gaining XP to prevent spam
+    XPCooldown: "1s" # XP Cooldown, 1s/1m/1h
+    VoiceInterval: "10s"
+
+  LevelUpMessageSettings:
+    Enabled: true # Enable level up messages
+    LevelUpMessage: "{user}, you are now level {newLevel}"
+    UseEmbed: false
+    Embed:
+      Title: "🎉 Level Up!"
+      Description:
+        - "{randomLevelMessage}"
+      Footer:
+        Text: ""
+        Icon: ""
+      Author:
+        Text: ""
+        Icon: ""
+      Color: "#eda3f0"
+      Image: ""
+      Thumbnail: "{userIcon}"
+        
+  RoleSettings:
+    StackRoles: true
+    LevelRoles:
+      - level: 1
+        roleID: ["ROLE_ID"] # Supports multiple role IDs for different guilds. The bot will use the first valid role for the current guild.
+      - level: 5
+        roleID: ["ROLE_ID"] # Supports multiple role IDs for different guilds. The bot will use the first valid role for the current guild.
+
+    ScaleRewards:
+      StackRewards: false
+      Rewards:
+        - level: +1
+          coins: 10
+
+RankCard:
+  AccentColor: "#1769FF"
+  SecondaryColor: "#4785FF"
+  ProgressBar:
+    StartColor: "#1769FF"
+    EndColor: "#4785FF"
+  TextColors:
+    LevelText: "#FFFFFF"
+    RankText: "#FFFFFF"
+    Numbers: "#FFFFFF"
+  Emojis:
+    Level: '✧'
+    TopRank: '♚'
+    NormalRank: '★'

@@ -1,0 +1,224 @@
+# ===========================================================================
+# LOGGING SYSTEM CONFIGURATION
+# All LogsChannelID entries support multiple channel IDs for different guilds.
+# ===========================================================================
+
+# ===========================================================================
+# USER LOGS
+# ===========================================================================
+UserUpdateLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+RoleAddLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+RoleRemoveLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+# ===========================================================================
+# GUILD LOGS
+# ===========================================================================
+GuildUpdateLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+ChannelCreatedLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+ChannelDeletedLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+# ===========================================================================
+# MESSAGE LOGS
+# ===========================================================================
+MessageDeleteLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+  LogImages: true
+
+MessageUpdateLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+# ===========================================================================
+# VOICE LOGS
+# ===========================================================================
+VoiceChannelStreamStart:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+VoiceChannelStreamStop:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+VoiceChannelJoin:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+VoiceChannelLeave:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+VoiceChannelSwitch:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+# ===========================================================================
+# MODERATION LOGS
+# ===========================================================================
+TimeoutLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+UntimeLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+WarnLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+BanLogs:
+  Enabled: false
+  DM:
+    Enabled: false
+    Embed:
+      Title: "🚫 Ban Notification"
+      Description:
+        - "**🏰 Guild:** {guildName}"
+        - "**🔨 Banned By:** {moderator}"
+        - "**📝 Reason:** {reason}"
+        - "**📅 Date:** {longtime}, {shorttime}"
+        - " "
+        - "🚷 You have been banned from the server."
+      Footer: "🔒 Moderation Action | DrakoBot"
+      Color: "#1769FF"
+  LogsChannelID: ["CHANNEL_ID"]
+  Embed:
+    Title: "🔨 Ban Action | User: {userTag}"
+    Description:
+      - "**👤 User:** {user}"
+      - "**🛠️ Moderator:** {moderator}"
+      - "**📝 Reason:** {reason}"
+      - "**📅 Date:** {longtime}, {shorttime}"
+      - " "
+      - "This ban has been completed."
+    Footer: "🔒 Moderation Action | DrakoBot"
+    Color: "#1769FF"
+  Thumbnail: true
+
+UnbanLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+  Embed:
+    Title: "🔓 Unban Action | User: {userTag}"
+    Description:
+      - "**👤 User:** {user}"
+      - "**🛠️ Moderator:** {moderator}"
+      - "**📝 Reason for Unban:** {reason}"
+      - "**📅 Date:** {longtime}, {shorttime}"
+      - " "
+      - "The user's ban has been lifted, restoring their access to the server."
+    Footer: "🔒 Moderation Action | DrakoBot"
+    Color: "#1769FF"
+  Thumbnail: true
+
+KickLogs:
+  Enabled: false
+  DM:
+    Enabled: true
+    Embed:
+      Title: ":boot: Kick Notification"
+      Description:
+        - "**👤 User:** {user}"
+        - "**🛠️ Kicked By:** {moderator}"
+        - "**📝 Reason:** {reason}"
+        - "**📅 Date:** {longTime}, {shortTime}"
+      Footer: "🔒 Moderation Action | DrakoBot"
+      Color: "#1769FF"
+  LogsChannelID: ["CHANNEL_ID"]
+  Embed:
+    Title: ":warning: User Kicked | Case #{caseNumber}" #{caseNumber}"
+    Description:
+      - "**👤 User:** {user} (ID: {userId})"
+      - "**🔧 Moderator:** {moderator}"
+      - "**📝 Reason:** {reason}"
+      - "**📅 Date:** {longTime}, {shortTime}"
+    Footer: "🔒 Moderation Action | DrakoBot"
+    Color: "#1769FF"
+    Thumbnail: true
+
+RoleDeletedLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+# ===========================================================================
+# MISCELLANEOUS LOGS
+# ===========================================================================
+InviteCreateLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+InviteDeleteLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+  
+InviteJoinLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+GiveawayLogs:
+  Enabled: false
+  LogsChannelID: ["CHANNEL_ID"]
+
+  GiveawayStarted:
+    Embed:
+      Title: ":tada: Giveaway Started :tada:"
+      Description:
+        - "**🎁 Prize:** `{prize}` x{winnerCount}"
+        - "**👤 Hosted by:** {hostedBy}"
+        - "**📢 Channel:** {channel}"
+        - "**🏆 Winner Count:** `{winnerCount}`"
+        - "**⏰  Ends in:** {endsIn}"
+      Footer: "🔒 Giveaway Log | DrakoBot"
+      Color: "#1769FF"
+      ThumbnailUrl: "https://i.imgur.com/ewT6bOT.png"
+      Thumbnail: true
+
+  GiveawayEnded:
+    Embed:
+      Title: ":tada: Giveaway Ended :tada:"
+      Description:
+        - "**🎁 Prize:** `{prize}` x{winnerCount}"
+        - "**👤 Hosted by:** {hostedBy}"
+        - "**📢 Channel:** {channel}"
+        - "**🏆 Winner Count:** `{winnerCount}`"
+        - "**🏆 Winners:** {winners}"
+      Footer: "🔒 Giveaway Log | DrakoBot"
+      Color: "#1769FF"
+      ThumbnailUrl: "https://i.imgur.com/ewT6bOT.png"
+      Thumbnail: true
+
+  GiveawayRerolled:
+    Embed:
+      Title: ":tada: Giveaway Rerolled :tada:"
+      Description:
+        - "**🎁 Prize:** `{prize}` x{winnerCount}"
+        - "**👤 Hosted by:** {hostedBy}"
+        - "**📢 Channel:** {channel}"
+        - "**🏆 Winner Count:** `{winnerCount}`"
+        - "**🏆 New Winners:** {winners}"
+      Footer: "🔒 Giveaway Log | DrakoBot"
+      Color: "#1769FF"
+      ThumbnailUrl: "https://i.imgur.com/ewT6bOT.png"
+      Thumbnail: true
+
+# ===========================================================================
+# PURGE LOG CHANNEL
+# ===========================================================================
+PurgeLogChannel: ["CHANNEL_ID"]

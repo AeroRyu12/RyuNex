@@ -1,0 +1,67 @@
+# ===========================================================================
+# ROLES SYSTEM CONFIGURATION
+# All role/channel IDs support arrays for multi-guild setups.
+# ===========================================================================
+# NV_PryRB0p9JKd7JCpuUVH+gZMFiBc3gyeJo7/AqXBycJU=
+# ===========================================================================
+# INVITE ROLES
+# ===========================================================================
+InviteRoles:
+  Enabled: false
+  Stack: true # If false, previous tier roles will be removed when reaching a new tier
+
+  Tiers:
+    1:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Supports multiple role IDs for different guilds
+      Amount: 1 # Amount of invites to get the role
+    2:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Supports multiple role IDs for different guilds
+      Amount: 10 # Amount of invites to get the role
+
+# ===========================================================================
+# REACTION ROLES CONFIGURATION 
+# ===========================================================================
+ReactionRoles:
+  Enabled: false
+
+  Example:
+    type: "REACT" # BUTTON, REACT, SELECT
+    resetReacts: false  # Should it remove the users reaction
+    ChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+    Embed:
+      Title: "**  Choose Your Roles!**"
+      Description:
+        - " "
+        - ">   **DMs Open** » People are allowed to DM you"
+        - ">   **DMs Closed** » You dont want people to DM you"
+        - ">   **Ask To DM** » People need to request to DM you"
+        - " "
+        - "*(( React with the corresponding emoji to get your roles! ))*"
+      Footer:
+        Text: "Drako Bot | Reaction Role System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Author:
+        Text: "Reaction Panel"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#1769FF"
+      Image: ""
+      Thumbnail: "https://i.imgur.com/w5XxKpc.png"
+    Reactions:
+      - Name: "DMs Open"
+        Emoji: "📢"
+        Style: "Success"
+        Description: "DMs are open"
+        RoleID: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+        RemoveRoles: []
+      - Name: "DMs Closed"
+        Emoji: "❌"
+        Style: "Danger"
+        Description: "DMs are closed"
+        RoleID: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+        RemoveRoles: []
+      - Name: "Ask to DM"
+        Emoji: "👀"
+        Style: "Secondary"
+        Description: "Ask to DM"
+        RoleID: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+        RemoveRoles: []

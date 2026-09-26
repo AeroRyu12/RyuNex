@@ -1,0 +1,42 @@
+# ===========================================================================
+# BACKUP SYSTEM CONFIGURATION
+# ===========================================================================
+
+Backup:
+  Enabled: false
+  Schedule: "1d" # Time between automatic backups (1d = 1 day, 1h = 1 hour, 1m = 1 minute)
+  MaxBackups: 5 # Maximum number of backups to keep (older backups will be rotated out)
+  LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds. Leave empty to disable.
+
+  # ---------------------------------------------------------------------------
+  # BACKUP CONTENT OPTIONS
+  # ---------------------------------------------------------------------------
+  # Choose what to include in backups
+
+  Content:
+    Channels: true # Backup text channels, voice channels, categories, etc.
+    Roles: true # Backup server roles
+    RolePermissions: true # Backup role permissions (requires Roles to be true)
+    Members: true # Backup member data (roles assigned, nicknames)
+    MemberRoles: true # Backup which roles members have (requires Members to be true)
+    MemberNicknames: true # Backup member nicknames (requires Members to be true)
+    Bans: true # Backup server ban list
+    Emojis: true # Backup server emojis
+    ServerSettings: true # Backup server name, icon, verification level, etc.
+
+  # ---------------------------------------------------------------------------
+  # MESSAGE BACKUP OPTIONS
+  # ---------------------------------------------------------------------------
+
+  Messages:
+    Enabled: true # Whether to backup messages in channels
+    MaxPerChannel: 50 # Maximum number of messages to backup per channel (0 = none)
+    SaveImages: false # Whether to save images from messages (increases backup size significantly)
+
+  # ---------------------------------------------------------------------------
+  # EXCLUDE OPTIONS
+  # ---------------------------------------------------------------------------
+  # Specify channel IDs to exclude from backups
+
+  Exclude:
+    Channels: [] # List of channel IDs to exclude from backup (e.g., ["123456789", "987654321"])

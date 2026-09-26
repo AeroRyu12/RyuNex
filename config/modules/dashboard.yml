@@ -1,0 +1,20 @@
+# ===========================================================================
+# DASHBOARD CONFIGURATION
+# ===========================================================================
+
+Dashboard: # https://docs.drakodevelopment.net/getting-started/dashboard-setup
+  Enabled: false
+  
+  ClientID: "CLIENT_ID"
+  ClientSecret: "CLIENT_SECRET"
+  Url: "http://localhost:7000"
+  Port: 7000
+  Auth:
+    JWTSecret: "MAKE_A_STRONG_PASSWORD" 
+    
+  Permissions:
+    Dashboard:
+      Login: ["ROLE_ID", "ROLE_ID"] # Add your support role IDs here
+      Settings: ["ROLE_ID", "ROLE_ID"] # Add your support role IDs here
+      Embed: ["ROLE_ID", "ROLE_ID"] # Add your support role IDs here
+      Suggestions: ["ROLE_ID", "ROLE_ID"] # Add your support role IDs here

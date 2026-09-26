@@ -1,0 +1,53 @@
+# ===========================================================================
+# MUSIC SYSTEM CONFIGURATION
+# ===========================================================================
+
+Music:
+  Enabled: true      # Whether to enable the music system
+  DefaultVolume: 80  # Default volume (0-100)
+  
+  # Deezer Configuration (FOR PERSONAL USE ONLY)
+  DeezerDecryptionKey: "g4el58wc0zvf9na1"
+  DeezerARLCookie: "b1120c4379dc18500ff60f67d4b27d14596ba263a92b5d838dce61b9b271eba252fb7d18650620f205c11c0a2d5172245f51c60d0bb1d6f98864944d0698ea562e563a650a9e9b609d326dec9796fb2565e6bf541481861f719f64ecfd61bc64" # Add your Deezer ARL cookie here to enable streaming
+  
+  # Permissions
+  RequiredRoles: []               # Roles that can use music commands, leave empty for everyone
+  RequiredControlRoles: []        # Roles that can use music control commands (leave empty to use same as RequiredRoles)
+  AllowedChannels: []             # Channels where music commands can be used, leave empty for all channels
+  AllowedCategories: []           # Categories where voice channels can be used for music
+  
+  # Player behavior
+  LeaveOnEnd: false               # Whether the bot should leave when the queue ends
+  LeaveOnEmpty: true              # Whether the bot should leave when the voice channel is empty
+  LeaveEndDelay: 300000           # Time in ms before leaving after queue ends (5 minutes)
+  LeaveEmptyDelay: 60000          # Time in ms before leaving when voice channel is empty (1 minute)
+  ConnectionTimeout: 60000        # Connection timeout in milliseconds (60 seconds)
+  BufferingTimeout: 30000         # Buffering timeout in milliseconds (30 seconds)
+  MaxQueueSize: 100               # Maximum number of tracks in queue
+  AutoPause: true                 # Whether to pause when everyone leaves the voice channel
+  
+  # Display settings
+  EmbedColor: "#FF69B4"           # The color for music embeds (using the pink color)
+  AutoDeleteCommands: true        # Whether to delete music commands automatically
+  CommandDeleteDelay: 5000        # Time in ms before deleting commands (5 seconds)
+  ShowProgressBar: true           # Whether to show a progress bar in now playing messages
+  ProgressBarLength: 15           # Length of the progress bar
+  ProgressBarFilledChar: ▰      # Character for filled part of progress bar
+  ProgressBarEmptyChar: ▱       # Character for empty part of progress bar
+  
+  # Now Playing display
+  DisplayNowPlaying: true         # Whether to display a now playing message when a track starts
+  RemoveOldNowPlaying: true       # Whether to delete previous now playing messages when a new track starts
+  
+  # Advanced settings
+  SaveQueuesOnRestart: true       # Whether to save and restore queues when the bot restarts
+  HighWaterMark: 1                # Buffer size for audio streaming (in MB)
+  
+  # Now Playing Buttons
+  Buttons:
+    ShowPauseResume: true
+    ShowSkip: true
+    ShowStop: true
+    ShowLoop: true
+    ShowShuffle: true
+    ShowVolumeControls: true

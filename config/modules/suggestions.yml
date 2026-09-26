@@ -1,0 +1,101 @@
+# ===========================================================================
+# SUGGESTION SYSTEM CONFIGURATION
+# ===========================================================================
+
+SuggestionSettings:
+  Enabled: true
+  ChannelID: ["1431803543865790504"] # Supports multiple channel IDs for different guilds. The bot will use the first valid channel for the current guild.
+  ChannelSuggestionID: [""] # Supports multiple channel IDs for different guilds. Leave empty to use ChannelID.
+  AllowedRoles: ["1272331356445347840", "ROLE_ID"] # Supports multiple role IDs for different guilds
+  SuggestionAcceptDenyRoles: ["1272331356445347840", "ROLE_ID"] # Supports multiple role IDs for different guilds
+  threadName: "{user}-suggestion" # Placeholders: {user}, Leave blank to disable
+  UseQuestionModal: true # Set to true to enable the question modal for suggestions
+  blockBlacklistWords: true # Should suggestions be filtered by the Blacklist Word System?
+  sendDM: true
+  AllowChannelSuggestions: true # Enable/disable creating suggestions by typing in channel
+  DeleteOriginalMessage: false # Whether to delete the original message when creating suggestion
+  DeleteFailureMessages: true # Whether to delete error messages after 5 seconds
+  FailureMessageTimeout: 5000 # How long to wait before deleting error messages (in milliseconds)
+
+  AdditionalModalInputs: # Limited to 4 extra inputs.
+    # Available placeholders for StringSelect: {modal_[ID]}, {modal_[ID]_formatted}, {modal_[ID]_label}, {modal_[ID]_emoji}
+    
+    1: # Product selection dropdown
+      Type: "StringSelect"
+      ID: "product" # Available as: {modal_product}, {modal_product_formatted}, {modal_product_label}, {modal_product_emoji}
+      Label: "Product Selection"
+      Description: "Which product is this suggestion for?"
+      Placeholder: "Choose a product..."
+      Required: true
+      Options:
+        - Label: "Drako Bot"
+          Value: "drako_bot"
+          Description: "Multi-purpose Discord bot"
+          Emoji: "🤖"
+        - Label: "Drako Tickets"
+          Value: "drako_tickets"
+          Description: "Advanced ticket management system"
+          Emoji: "🎫"
+        - Label: "Discord Platform"
+          Value: "discord"
+          Description: "General Discord platform suggestions"
+          Emoji: "💬"
+        - Label: "Other"
+          Value: "other"
+          Description: "Other products or services"
+          Emoji: "📦"
+
+SuggestionUpvote:
+  ButtonName: "{upvotecount} ({upvotePercent}%)"
+  ButtonEmoji: "👍"
+  ButtonColor: Success # Primary, Secondary, Success, Danger
+  upvoteEmoji: "👍"
+
+SuggestionDownvote:
+  ButtonName: "{downvotecount} ({downvotePercent}%)"
+  ButtonEmoji: "👎"
+  ButtonColor: Danger # Primary, Secondary, Success, Danger
+  downvoteEmoji: "👎"
+
+# Placeholders: {user}, {upvotecount}, {upvoteemoji}, {downvoteemoji}, {downvotecount}, {Suggestion}, {SuggestionID}, {ShortTime} ShortTime is HH:MM:SS. {LongTime} LongTime is May 5th 2024
+SuggestionEmbed:
+  EmbedColor: "#1769FF"
+  EmbedTitle: "{user}'s Suggestion"
+  EmbedDescription:
+  - "**Suggestion**"
+  - "```{suggestion}```" 
+  - "* **Information**"
+  - "> **Product:** {modal_product_formatted}" # product is now a dropdown selection from AdditionalModalInputs config
+  EmbedFooter: "Suggestion ID: {SuggestionID} | {LongTime}" # {SuggestionID}, {ShortTime}, {LongTime}
+  Thumbnail: true
+  AuthorIcon: true
+
+# Placeholders: {user}, {reason, {suggestion}, {SuggestionID}, {ShortTime} ShortTime is HH:MM:SS. {LongTime} LongTime is May 5th 2024
+SuggestionAcceptEmbed: 
+  AcceptChannelID: [""] # Supports multiple channel IDs for different guilds. Leave blank for none.
+  EmbedColor: "#4BB543"
+  EmbedTitle: "Accepted {user}'s Suggestion"
+  EmbedBody: 
+  - "**Suggestion**"
+  - "```{suggestion}```"
+  - "**Reason**"
+  - "```{reason}```"
+  - "**Product:** {modal_product_formatted}" # product is now a dropdown selection from AdditionalModalInputs config
+  EmbedFooter: "Suggestion ID: {SuggestionID} | {LongTime}" # {SuggestionID}, {ShortTime}, {LongTime}
+  Thumbnail: true
+  AuthorIcon: true
+  
+# Placeholders: {user}, {reason}, {suggestion}, {SuggestionID}, {ShortTime} ShortTime is HH:MM:SS. {LongTime} LongTime is May 5th 2024
+SuggestionDenyEmbed: 
+  DenyChannelID: [""] # Supports multiple channel IDs for different guilds. Leave blank for none.
+  EmbedColor: "#a82e2e"
+  EmbedTitle: "Denied {user}'s Suggestion"
+  EmbedBody: 
+  - "**Suggestion**"
+  - "```{suggestion}```"
+  - "**Reason**"
+  - "```{reason}```"
+  - "**Product:** {modal_product_formatted}" # product is now a dropdown selection from AdditionalModalInputs config
+  EmbedFooter: "Suggestion ID: {SuggestionID} | {LongTime}" # {SuggestionID}, {ShortTime}, {LongTime}
+  Thumbnail: true
+  AuthorIcon: true
